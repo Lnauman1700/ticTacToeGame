@@ -15,9 +15,6 @@ let isXturn = getFirstPlayer();
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
   let symbol;
-  grid.removeEventListener("click", () => {
-    placeShape(grid);
-  });
   if(isXturn) {
     symbol = document.createTextNode("X");
   }
@@ -35,11 +32,26 @@ const placeShape = (grid) => {
 const checkEnd = (grid) => {
   //we want to check to see if each node within a row/column/diagonal is all one symbol
   if(searchForVictory(grid)) {
-    console.log("eyy, you win");
+    let winner;
+    if(isXturn) {
+      winner = "X"
+    }
+    else {
+      winner = "O"
+    }
+    let winP = document.createElement("p");
+    let winText = document.createTextNode("The winner is " + winner);
+    winP.appendChild(winText);
+    document.body.appendChild(winP);
+    createResetButton();
   }
   //if this isn't the case, we want to check to see if the board is completely full
   else if(checkFull()) {
-    console.log("nobody win");
+    let loseP = document.createElement("p");
+    let loseText = document.createTextNode("nobody wins");
+    loseP.appendChild(loseText);
+    document.body.appendChild(loseP);
+    createResetButton();
   }
   //otherwise, things continue and we flip the isXturn boolean
   else {
@@ -59,7 +71,7 @@ const searchForVictory = (grid) => {
     }
   }
   return false;
-}
+};
 
 const checkFull = () => {
   for(let entry of fullTable) {
@@ -68,7 +80,15 @@ const checkFull = () => {
     }
   }
   return true;
-}
+};
+
+const createResetButton = () => {
+  let button = document.createElement("button");
+  let text = document.createTextNode("reset");
+  button.setAttribute("onclick", "window.location.reload();")
+  button.appendChild(text);
+  document.body.appendChild(button);
+};
 
 let a1 = document.querySelector(".rowA > .column1");
 let a2 = document.querySelector(".rowA > .column2");
@@ -85,6 +105,7 @@ let fullTable = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 
 let a1Event = a1.addEventListener("click", () => {
   placeShape(a1);
+  a1.removeEventListener("click", placeShape);
 });
 let a2Event = a2.addEventListener("click", () => {
   placeShape(a2);
