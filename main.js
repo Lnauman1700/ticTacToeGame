@@ -16,7 +16,9 @@ const getFirstPlayer = () => {
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
   let symbol;
-  grid.removeEventListener("click", placeShape);
+  grid.removeEventListener("click", () => {
+    placeShape(grid);
+  });
   if(isXturn) {
     symbol = document.createTextNode("X");
   }
@@ -45,12 +47,30 @@ let c1 = document.querySelector(".rowC > .column1");
 let c2 = document.querySelector(".rowC > .column2");
 let c3 = document.querySelector(".rowC > .column3");
 
-let a1Event = a1.addEventListener("click", placeShape(a1));
-let a2Event = a2.addEventListener("click", placeShape(a2));
-let a3Event = a3.addEventListener("click", placeShape(a3));
-let b1Event = b1.addEventListener("click", placeShape(b1));
-let b2Event = b2.addEventListener("click", placeShape(b2));
-let b3Event = b3.addEventListener("click", placeShape(b3));
-let c1Event = c1.addEventListener("click", placeShape(c1));
-let c2Event = c2.addEventListener("click", placeShape(c2));
-let c3Event = c3.addEventListener("click", placeShape(c3));
+let a1Event = a1.addEventListener("click", () => {
+  placeShape(a1);
+});
+let a2Event = a2.addEventListener("click", () => {
+  placeShape(a2);
+});
+let a3Event = a3.addEventListener("click", () => {
+  placeShape(a3);
+});
+let b1Event = b1.addEventListener("click", () => {
+  placeShape(b1);
+});
+let b2Event = b2.addEventListener("click", () => {
+  placeShape(b2);
+});
+let b3Event = b3.addEventListener("click", () => {
+  placeShape(b3);
+});
+let c1Event = c1.addEventListener("click", () => {
+  placeShape(c1);
+});
+let c2Event = c2.addEventListener("click", () => {
+  placeShape(c2);
+});
+let c3Event = c3.addEventListener("click", () => {
+  placeShape(c3);
+});
