@@ -14,17 +14,22 @@ let isXturn = getFirstPlayer();
 //function that places the x or o down in a grid.
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
-  let symbol;
-  if(isXturn) {
-    symbol = document.createTextNode("X");
+  if(grid.textContent === "X" || grid.textContent === "O") {
+
   }
   else {
-    symbol = document.createTextNode("O");
-  }
-  grid.appendChild(symbol);
+    let symbol;
+    if(isXturn) {
+      symbol = document.createTextNode("X");
+    }
+    else {
+      symbol = document.createTextNode("O");
+    }
+    grid.appendChild(symbol);
 
-  //before we flip the boolean, call checkEnd();
-  checkEnd(grid);
+    //before we flip the boolean, call checkEnd();
+    checkEnd(grid);
+  }
 };
 
 //function that checks whether someone won or lost
@@ -102,7 +107,8 @@ let c3 = document.querySelector(".rowC > .column3");
 
 let tableArr = [[a1, a2, a3], [b1, b2, b3], [c1, c2, c3], [a1, b1, c1], [a2, b2, c2], [a3, b3, c3], [a1, b2, c3], [a3, b2, c1]];
 let fullTable = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
-
+/*const a1Event = () => placeShape(a1);
+a1.addEventListener("click", a1Event);*/
 let a1Event = a1.addEventListener("click", () => {
   placeShape(a1);
 });
