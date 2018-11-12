@@ -105,7 +105,6 @@ let fullTable = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 
 let a1Event = a1.addEventListener("click", () => {
   placeShape(a1);
-  a1.removeEventListener("click", placeShape);
 });
 let a2Event = a2.addEventListener("click", () => {
   placeShape(a2);
