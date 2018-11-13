@@ -10,11 +10,12 @@ const getFirstPlayer = () => {
 };
 
 let isXturn = getFirstPlayer();
+let isGameFinished = false;
 
 //function that places the x or o down in a grid.
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
-  if(grid.textContent === "X" || grid.textContent === "O") {
+  if(grid.textContent === "X" || grid.textContent === "O" || isGameFinished === true) {
 
   }
   else {
@@ -49,6 +50,7 @@ const checkEnd = (grid) => {
     winP.appendChild(winText);
     document.body.appendChild(winP);
     createResetButton();
+    isGameFinished = true;
   }
   //if this isn't the case, we want to check to see if the board is completely full
   else if(checkFull()) {
