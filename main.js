@@ -109,35 +109,12 @@ let c3 = document.querySelector(".rowC > .column3");
 
 let tableArr = [[a1, a2, a3], [b1, b2, b3], [c1, c2, c3], [a1, b1, c1], [a2, b2, c2], [a3, b3, c3], [a1, b2, c3], [a3, b2, c1]];
 let fullTable = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
-/*const a1Event = () => placeShape(a1);
-a1.addEventListener("click", a1Event);*/
-let a1Event = a1.addEventListener("click", () => {
-  placeShape(a1);
-});
-let a2Event = a2.addEventListener("click", () => {
-  placeShape(a2);
-});
-let a3Event = a3.addEventListener("click", () => {
-  placeShape(a3);
-});
-let b1Event = b1.addEventListener("click", () => {
-  placeShape(b1);
-});
-let b2Event = b2.addEventListener("click", () => {
-  placeShape(b2);
-});
-let b3Event = b3.addEventListener("click", () => {
-  placeShape(b3);
-});
-let c1Event = c1.addEventListener("click", () => {
-  placeShape(c1);
-});
-let c2Event = c2.addEventListener("click", () => {
-  placeShape(c2);
-});
-let c3Event = c3.addEventListener("click", () => {
-  placeShape(c3);
-});
+
+for(let entry of document.querySelectorAll("div > div")) {
+  entry.addEventListener("click", () => {
+    placeShape(entry);
+  });
+}
 
 //use the numpad as an input as well
 document.addEventListener("keydown", () => {
