@@ -138,3 +138,50 @@ let c2Event = c2.addEventListener("click", () => {
 let c3Event = c3.addEventListener("click", () => {
   placeShape(c3);
 });
+
+//use the numpad as an input as well
+document.addEventListener("keydown", () => {
+  if(event.key == "1") {
+    placeShape(c1);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "2") {
+    placeShape(c2);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "3") {
+    placeShape(c3);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "4") {
+    placeShape(b1);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "5") {
+    placeShape(b2);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "6") {
+    placeShape(b3);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "7") {
+    placeShape(a1);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "8") {
+    placeShape(a2);
+  }
+});
+document.addEventListener("keydown", () => {
+  if(event.key == "9") {
+    placeShape(a3);
+  }
+});
