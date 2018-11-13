@@ -9,12 +9,34 @@ const getFirstPlayer = () => {
   }
 };
 
+
+
 let isXturn = getFirstPlayer();
 let isGameFinished = false;
+let whoseTurn = document.createElement("p");
+document.body.appendChild(whoseTurn);
+let turnText;
+
+const changeTurnText = () => {
+  if(whoseTurn.hasChildNodes()) {
+    whoseTurn.removeChild(turnText);
+  }
+  if(isXturn) {
+    turnText = document.createTextNode("It is X's turn");
+    whoseTurn.appendChild(turnText);
+  }
+  else {
+    turnText = document.createTextNode("It is O's turn");
+    whoseTurn.appendChild(turnText);
+  }
+};
+
+changeTurnText();
 
 //function that places the x or o down in a grid.
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
+
   if(grid.textContent === "X" || grid.textContent === "O" || isGameFinished === true) {
 
   }
@@ -63,6 +85,7 @@ const checkEnd = (grid) => {
   //otherwise, things continue and we flip the isXturn boolean
   else {
     isXturn = !isXturn;
+    changeTurnText();
   }
 };
 
