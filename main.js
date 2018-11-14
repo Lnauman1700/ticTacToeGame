@@ -62,10 +62,10 @@ const checkEnd = (grid) => {
   if(searchForVictory(grid)) {
     let winner;
     if(isXturn) {
-      winner = "X"
+      winner = "X";
     }
     else {
-      winner = "O"
+      winner = "O";
     }
     let winP = document.createElement("p");
     let winText = document.createTextNode("The winner is " + winner);
