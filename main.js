@@ -37,10 +37,13 @@ changeTurnText();
 //based on the boolean value of who's turn it is.
 const placeShape = (grid) => {
 
+  //keeps the player from placing a time down where a slot already exists
+  //also does the same thing with all tiles if the game is finished
   if(grid.textContent === "X" || grid.textContent === "O" || isGameFinished === true) {
 
   }
   else {
+    //create the symbol, append it to the grid you clicked
     let symbol;
     if(isXturn) {
       symbol = document.createTextNode("X");
@@ -50,7 +53,7 @@ const placeShape = (grid) => {
     }
     grid.appendChild(symbol);
 
-    //before we flip the boolean, call checkEnd();
+    //check to see if the game is over
     checkEnd(grid);
   }
 };
@@ -67,29 +70,36 @@ const checkEnd = (grid) => {
     else {
       winner = "O";
     }
+    //this stuff just appends a paragraph which shows who won
     let winP = document.createElement("p");
     let winText = document.createTextNode("The winner is " + winner);
     winP.appendChild(winText);
     document.body.appendChild(winP);
+    //now, let's create a reset button and say the game is finished
     createResetButton();
     isGameFinished = true;
   }
   //if this isn't the case, we want to check to see if the board is completely full
   else if(checkFull()) {
+    //append a paragraph saying that nobody wins
     let loseP = document.createElement("p");
     let loseText = document.createTextNode("nobody wins");
     loseP.appendChild(loseText);
     document.body.appendChild(loseP);
+    //create that reset button
     createResetButton();
   }
   //otherwise, things continue and we flip the isXturn boolean
   else {
     isXturn = !isXturn;
+    //changes the paragraph which shows whose turn it is
     changeTurnText();
   }
 };
 
+//checks to see if a victory is achieved
 const searchForVictory = (grid) => {
+  //loops through every single possible win position, and returns true if a victory is achieved
   for(let innerArr of tableArr) {
     if(innerArr.includes(grid)) {
       let first = innerArr[0].textContent;
@@ -103,7 +113,9 @@ const searchForVictory = (grid) => {
   return false;
 };
 
+//checks to see if the grids are all full
 const checkFull = () => {
+  //loops through every grid, if any of them don't have a value, return false
   for(let entry of fullTable) {
     if(entry.textContent === "") {
       return false;
@@ -112,6 +124,7 @@ const checkFull = () => {
   return true;
 };
 
+//appends a reset button which refreshes the pag on click
 const createResetButton = () => {
   let button = document.createElement("button");
   let text = document.createTextNode("reset");
@@ -133,6 +146,7 @@ let c3 = document.querySelector(".rowC > .column3");
 let tableArr = [[a1, a2, a3], [b1, b2, b3], [c1, c2, c3], [a1, b1, c1], [a2, b2, c2], [a3, b3, c3], [a1, b2, c3], [a3, b2, c1]];
 let fullTable = [a1, a2, a3, b1, b2, b3, c1, c2, c3];
 
+//assigns each grid a eventListener that looks for clicks
 for(let entry of document.querySelectorAll("div > div")) {
   entry.addEventListener("click", () => {
     placeShape(entry);
